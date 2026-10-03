@@ -1,0 +1,9 @@
+# Установка protobuf
+winget install protobuf
+# перезапустите PowerShell и проверит что все части на месте
+protoc --version
+protoc-gen-go --version
+protoc-gen-go-grpc --version
+
+# Команды для генерации кода в gen/randompb:
+protoc --go_out=. --go_opt=module=go.services.grpclab --go-grpc_out=. --go-grpc_opt=module=go.services.grpclab proto/random.proto

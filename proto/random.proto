@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package random;
+
+option go_package = "go.services.grpclab/gen/randompb;randompb";
+
+// Сервис Random умеет отдавать случайное число.
+service Random {
+  // Unary RPC: один запрос → один ответ.
+  rpc GetRandom(GetRandomRequest) returns (GetRandomResponse);
+}
+
+// Пустой запрос — параметров не нужно.
+message GetRandomRequest {}
+
+// Ответ содержит одно число.
+message GetRandomResponse {
+  int32 value = 1;
+}
