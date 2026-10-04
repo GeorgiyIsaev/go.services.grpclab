@@ -19,17 +19,28 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Random_GetRandom_FullMethodName = "/random.Random/GetRandom"
+	Random_GetRandom_FullMethodName      = "/random.Random/GetRandom"
+	Random_StreamRandom_FullMethodName   = "/random.Random/StreamRandom"
+	Random_UploadNumbers_FullMethodName  = "/random.Random/UploadNumbers"
+	Random_CompareNumbers_FullMethodName = "/random.Random/CompareNumbers"
 )
 
 // RandomClient is the client API for Random service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// Сервис Random умеет отдавать случайное число.
+// Сервис Random демонстрирует все четыре типа gRPC-вызовов.
+// Инициатор в любом случае — клиент, разница только в том,
+// кто и сколько сообщений отправляет.
 type RandomClient interface {
-	// Unary RPC: один запрос → один ответ.
+	// 1. Unary: клиент 1 → сервер 1.
 	GetRandom(ctx context.Context, in *GetRandomRequest, opts ...grpc.CallOption) (*GetRandomResponse, error)
+	// 2. Server Streaming: клиент 1 → сервер поток.
+	StreamRandom(ctx context.Context, in *StreamRandomRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamRandomResponse], error)
+	// 3. Client Streaming: клиент поток → сервер 1.
+	UploadNumbers(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UploadNumbersRequest, UploadNumbersResponse], error)
+	// 4. Bidirectional Streaming: клиент поток ↔ сервер поток.
+	CompareNumbers(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[CompareNumbersRequest, CompareNumbersResponse], error)
 }
 
 type randomClient struct {
@@ -50,14 +61,67 @@ func (c *randomClient) GetRandom(ctx context.Context, in *GetRandomRequest, opts
 	return out, nil
 }
 
+func (c *randomClient) StreamRandom(ctx context.Context, in *StreamRandomRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamRandomResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Random_ServiceDesc.Streams[0], Random_StreamRandom_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[StreamRandomRequest, StreamRandomResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Random_StreamRandomClient = grpc.ServerStreamingClient[StreamRandomResponse]
+
+func (c *randomClient) UploadNumbers(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UploadNumbersRequest, UploadNumbersResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Random_ServiceDesc.Streams[1], Random_UploadNumbers_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[UploadNumbersRequest, UploadNumbersResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Random_UploadNumbersClient = grpc.ClientStreamingClient[UploadNumbersRequest, UploadNumbersResponse]
+
+func (c *randomClient) CompareNumbers(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[CompareNumbersRequest, CompareNumbersResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Random_ServiceDesc.Streams[2], Random_CompareNumbers_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[CompareNumbersRequest, CompareNumbersResponse]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Random_CompareNumbersClient = grpc.BidiStreamingClient[CompareNumbersRequest, CompareNumbersResponse]
+
 // RandomServer is the server API for Random service.
 // All implementations must embed UnimplementedRandomServer
 // for forward compatibility.
 //
-// Сервис Random умеет отдавать случайное число.
+// Сервис Random демонстрирует все четыре типа gRPC-вызовов.
+// Инициатор в любом случае — клиент, разница только в том,
+// кто и сколько сообщений отправляет.
 type RandomServer interface {
-	// Unary RPC: один запрос → один ответ.
+	// 1. Unary: клиент 1 → сервер 1.
 	GetRandom(context.Context, *GetRandomRequest) (*GetRandomResponse, error)
+	// 2. Server Streaming: клиент 1 → сервер поток.
+	StreamRandom(*StreamRandomRequest, grpc.ServerStreamingServer[StreamRandomResponse]) error
+	// 3. Client Streaming: клиент поток → сервер 1.
+	UploadNumbers(grpc.ClientStreamingServer[UploadNumbersRequest, UploadNumbersResponse]) error
+	// 4. Bidirectional Streaming: клиент поток ↔ сервер поток.
+	CompareNumbers(grpc.BidiStreamingServer[CompareNumbersRequest, CompareNumbersResponse]) error
 	mustEmbedUnimplementedRandomServer()
 }
 
@@ -70,6 +134,15 @@ type UnimplementedRandomServer struct{}
 
 func (UnimplementedRandomServer) GetRandom(context.Context, *GetRandomRequest) (*GetRandomResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetRandom not implemented")
+}
+func (UnimplementedRandomServer) StreamRandom(*StreamRandomRequest, grpc.ServerStreamingServer[StreamRandomResponse]) error {
+	return status.Error(codes.Unimplemented, "method StreamRandom not implemented")
+}
+func (UnimplementedRandomServer) UploadNumbers(grpc.ClientStreamingServer[UploadNumbersRequest, UploadNumbersResponse]) error {
+	return status.Error(codes.Unimplemented, "method UploadNumbers not implemented")
+}
+func (UnimplementedRandomServer) CompareNumbers(grpc.BidiStreamingServer[CompareNumbersRequest, CompareNumbersResponse]) error {
+	return status.Error(codes.Unimplemented, "method CompareNumbers not implemented")
 }
 func (UnimplementedRandomServer) mustEmbedUnimplementedRandomServer() {}
 func (UnimplementedRandomServer) testEmbeddedByValue()                {}
@@ -110,6 +183,31 @@ func _Random_GetRandom_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Random_StreamRandom_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamRandomRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(RandomServer).StreamRandom(m, &grpc.GenericServerStream[StreamRandomRequest, StreamRandomResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Random_StreamRandomServer = grpc.ServerStreamingServer[StreamRandomResponse]
+
+func _Random_UploadNumbers_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RandomServer).UploadNumbers(&grpc.GenericServerStream[UploadNumbersRequest, UploadNumbersResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Random_UploadNumbersServer = grpc.ClientStreamingServer[UploadNumbersRequest, UploadNumbersResponse]
+
+func _Random_CompareNumbers_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(RandomServer).CompareNumbers(&grpc.GenericServerStream[CompareNumbersRequest, CompareNumbersResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Random_CompareNumbersServer = grpc.BidiStreamingServer[CompareNumbersRequest, CompareNumbersResponse]
+
 // Random_ServiceDesc is the grpc.ServiceDesc for Random service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -122,6 +220,23 @@ var Random_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Random_GetRandom_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamRandom",
+			Handler:       _Random_StreamRandom_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "UploadNumbers",
+			Handler:       _Random_UploadNumbers_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "CompareNumbers",
+			Handler:       _Random_CompareNumbers_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "proto/random.proto",
 }

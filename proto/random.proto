@@ -4,16 +4,68 @@ package random;
 
 option go_package = "go.services.grpclab/gen/randompb;randompb";
 
-// Сервис Random умеет отдавать случайное число.
+// Сервис Random демонстрирует все четыре типа gRPC-вызовов.
+// Инициатор в любом случае — клиент, разница только в том,
+// кто и сколько сообщений отправляет.
 service Random {
-  // Unary RPC: один запрос → один ответ.
+  // 1. Unary: клиент 1 → сервер 1.
   rpc GetRandom(GetRandomRequest) returns (GetRandomResponse);
+
+  // 2. Server Streaming: клиент 1 → сервер поток.
+  rpc StreamRandom(StreamRandomRequest) returns (stream StreamRandomResponse);
+
+  // 3. Client Streaming: клиент поток → сервер 1.
+  rpc UploadNumbers(stream UploadNumbersRequest) returns (UploadNumbersResponse);
+
+  // 4. Bidirectional Streaming: клиент поток ↔ сервер поток.
+  rpc CompareNumbers(stream CompareNumbersRequest) returns (stream CompareNumbersResponse);
 }
 
-// Пустой запрос — параметров не нужно.
+// ---------- 1. Unary ----------
+
 message GetRandomRequest {}
 
-// Ответ содержит одно число.
 message GetRandomResponse {
   int32 value = 1;
+}
+
+// ---------- 2. Server Streaming ----------
+
+message StreamRandomRequest {
+  // Интервал между сообщениями в секундах (0 → 5 секунд по умолчанию).
+  int32 interval_seconds = 1;
+  // Сколько чисел прислать. 0 → без ограничения, до отключения клиента.
+  int32 count = 2;
+}
+
+message StreamRandomResponse {
+  int32 value = 1;
+  int64 timestamp_unix = 2;
+}
+
+// ---------- 3. Client Streaming ----------
+
+message UploadNumbersRequest {
+  int32 value = 1;
+}
+
+message UploadNumbersResponse {
+  int32 count = 1;
+  int64 sum = 2;
+  double average = 3;
+  int32 min = 4;
+  int32 max = 5;
+}
+
+// ---------- 4. Bidirectional Streaming ----------
+
+message CompareNumbersRequest {
+  int32 value = 1;
+}
+
+message CompareNumbersResponse {
+  int32 client_value = 1;
+  int32 server_value = 2;
+  // "client bigger" / "server bigger" / "equal"
+  string result = 3;
 }

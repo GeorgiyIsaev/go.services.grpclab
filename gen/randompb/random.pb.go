@@ -21,7 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Пустой запрос — параметров не нужно.
 type GetRandomRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -58,7 +57,6 @@ func (*GetRandomRequest) Descriptor() ([]byte, []int) {
 	return file_proto_random_proto_rawDescGZIP(), []int{0}
 }
 
-// Ответ содержит одно число.
 type GetRandomResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Value         int32                  `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
@@ -103,6 +101,337 @@ func (x *GetRandomResponse) GetValue() int32 {
 	return 0
 }
 
+type StreamRandomRequest struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Интервал между сообщениями в секундах (0 → 5 секунд по умолчанию).
+	IntervalSeconds int32 `protobuf:"varint,1,opt,name=interval_seconds,json=intervalSeconds,proto3" json:"interval_seconds,omitempty"`
+	// Сколько чисел прислать. 0 → без ограничения, до отключения клиента.
+	Count         int32 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StreamRandomRequest) Reset() {
+	*x = StreamRandomRequest{}
+	mi := &file_proto_random_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamRandomRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamRandomRequest) ProtoMessage() {}
+
+func (x *StreamRandomRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_random_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamRandomRequest.ProtoReflect.Descriptor instead.
+func (*StreamRandomRequest) Descriptor() ([]byte, []int) {
+	return file_proto_random_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *StreamRandomRequest) GetIntervalSeconds() int32 {
+	if x != nil {
+		return x.IntervalSeconds
+	}
+	return 0
+}
+
+func (x *StreamRandomRequest) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+type StreamRandomResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         int32                  `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
+	TimestampUnix int64                  `protobuf:"varint,2,opt,name=timestamp_unix,json=timestampUnix,proto3" json:"timestamp_unix,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StreamRandomResponse) Reset() {
+	*x = StreamRandomResponse{}
+	mi := &file_proto_random_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamRandomResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamRandomResponse) ProtoMessage() {}
+
+func (x *StreamRandomResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_random_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamRandomResponse.ProtoReflect.Descriptor instead.
+func (*StreamRandomResponse) Descriptor() ([]byte, []int) {
+	return file_proto_random_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *StreamRandomResponse) GetValue() int32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+func (x *StreamRandomResponse) GetTimestampUnix() int64 {
+	if x != nil {
+		return x.TimestampUnix
+	}
+	return 0
+}
+
+type UploadNumbersRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         int32                  `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UploadNumbersRequest) Reset() {
+	*x = UploadNumbersRequest{}
+	mi := &file_proto_random_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UploadNumbersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadNumbersRequest) ProtoMessage() {}
+
+func (x *UploadNumbersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_random_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadNumbersRequest.ProtoReflect.Descriptor instead.
+func (*UploadNumbersRequest) Descriptor() ([]byte, []int) {
+	return file_proto_random_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UploadNumbersRequest) GetValue() int32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+type UploadNumbersResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Count         int32                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	Sum           int64                  `protobuf:"varint,2,opt,name=sum,proto3" json:"sum,omitempty"`
+	Average       float64                `protobuf:"fixed64,3,opt,name=average,proto3" json:"average,omitempty"`
+	Min           int32                  `protobuf:"varint,4,opt,name=min,proto3" json:"min,omitempty"`
+	Max           int32                  `protobuf:"varint,5,opt,name=max,proto3" json:"max,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UploadNumbersResponse) Reset() {
+	*x = UploadNumbersResponse{}
+	mi := &file_proto_random_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UploadNumbersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UploadNumbersResponse) ProtoMessage() {}
+
+func (x *UploadNumbersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_random_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UploadNumbersResponse.ProtoReflect.Descriptor instead.
+func (*UploadNumbersResponse) Descriptor() ([]byte, []int) {
+	return file_proto_random_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UploadNumbersResponse) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *UploadNumbersResponse) GetSum() int64 {
+	if x != nil {
+		return x.Sum
+	}
+	return 0
+}
+
+func (x *UploadNumbersResponse) GetAverage() float64 {
+	if x != nil {
+		return x.Average
+	}
+	return 0
+}
+
+func (x *UploadNumbersResponse) GetMin() int32 {
+	if x != nil {
+		return x.Min
+	}
+	return 0
+}
+
+func (x *UploadNumbersResponse) GetMax() int32 {
+	if x != nil {
+		return x.Max
+	}
+	return 0
+}
+
+type CompareNumbersRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         int32                  `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompareNumbersRequest) Reset() {
+	*x = CompareNumbersRequest{}
+	mi := &file_proto_random_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompareNumbersRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompareNumbersRequest) ProtoMessage() {}
+
+func (x *CompareNumbersRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_random_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompareNumbersRequest.ProtoReflect.Descriptor instead.
+func (*CompareNumbersRequest) Descriptor() ([]byte, []int) {
+	return file_proto_random_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *CompareNumbersRequest) GetValue() int32 {
+	if x != nil {
+		return x.Value
+	}
+	return 0
+}
+
+type CompareNumbersResponse struct {
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	ClientValue int32                  `protobuf:"varint,1,opt,name=client_value,json=clientValue,proto3" json:"client_value,omitempty"`
+	ServerValue int32                  `protobuf:"varint,2,opt,name=server_value,json=serverValue,proto3" json:"server_value,omitempty"`
+	// "client bigger" / "server bigger" / "equal"
+	Result        string `protobuf:"bytes,3,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CompareNumbersResponse) Reset() {
+	*x = CompareNumbersResponse{}
+	mi := &file_proto_random_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CompareNumbersResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CompareNumbersResponse) ProtoMessage() {}
+
+func (x *CompareNumbersResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_random_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CompareNumbersResponse.ProtoReflect.Descriptor instead.
+func (*CompareNumbersResponse) Descriptor() ([]byte, []int) {
+	return file_proto_random_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CompareNumbersResponse) GetClientValue() int32 {
+	if x != nil {
+		return x.ClientValue
+	}
+	return 0
+}
+
+func (x *CompareNumbersResponse) GetServerValue() int32 {
+	if x != nil {
+		return x.ServerValue
+	}
+	return 0
+}
+
+func (x *CompareNumbersResponse) GetResult() string {
+	if x != nil {
+		return x.Result
+	}
+	return ""
+}
+
 var File_proto_random_proto protoreflect.FileDescriptor
 
 const file_proto_random_proto_rawDesc = "" +
@@ -110,9 +439,32 @@ const file_proto_random_proto_rawDesc = "" +
 	"\x12proto/random.proto\x12\x06random\"\x12\n" +
 	"\x10GetRandomRequest\")\n" +
 	"\x11GetRandomResponse\x12\x14\n" +
-	"\x05value\x18\x01 \x01(\x05R\x05value2J\n" +
+	"\x05value\x18\x01 \x01(\x05R\x05value\"V\n" +
+	"\x13StreamRandomRequest\x12)\n" +
+	"\x10interval_seconds\x18\x01 \x01(\x05R\x0fintervalSeconds\x12\x14\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count\"S\n" +
+	"\x14StreamRandomResponse\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\x05R\x05value\x12%\n" +
+	"\x0etimestamp_unix\x18\x02 \x01(\x03R\rtimestampUnix\",\n" +
+	"\x14UploadNumbersRequest\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\x05R\x05value\"}\n" +
+	"\x15UploadNumbersResponse\x12\x14\n" +
+	"\x05count\x18\x01 \x01(\x05R\x05count\x12\x10\n" +
+	"\x03sum\x18\x02 \x01(\x03R\x03sum\x12\x18\n" +
+	"\aaverage\x18\x03 \x01(\x01R\aaverage\x12\x10\n" +
+	"\x03min\x18\x04 \x01(\x05R\x03min\x12\x10\n" +
+	"\x03max\x18\x05 \x01(\x05R\x03max\"-\n" +
+	"\x15CompareNumbersRequest\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\x05R\x05value\"v\n" +
+	"\x16CompareNumbersResponse\x12!\n" +
+	"\fclient_value\x18\x01 \x01(\x05R\vclientValue\x12!\n" +
+	"\fserver_value\x18\x02 \x01(\x05R\vserverValue\x12\x16\n" +
+	"\x06result\x18\x03 \x01(\tR\x06result2\xbc\x02\n" +
 	"\x06Random\x12@\n" +
-	"\tGetRandom\x12\x18.random.GetRandomRequest\x1a\x19.random.GetRandomResponseB+Z)go.services.grpclab/gen/randompb;randompbb\x06proto3"
+	"\tGetRandom\x12\x18.random.GetRandomRequest\x1a\x19.random.GetRandomResponse\x12K\n" +
+	"\fStreamRandom\x12\x1b.random.StreamRandomRequest\x1a\x1c.random.StreamRandomResponse0\x01\x12N\n" +
+	"\rUploadNumbers\x12\x1c.random.UploadNumbersRequest\x1a\x1d.random.UploadNumbersResponse(\x01\x12S\n" +
+	"\x0eCompareNumbers\x12\x1d.random.CompareNumbersRequest\x1a\x1e.random.CompareNumbersResponse(\x010\x01B+Z)go.services.grpclab/gen/randompb;randompbb\x06proto3"
 
 var (
 	file_proto_random_proto_rawDescOnce sync.Once
@@ -126,16 +478,28 @@ func file_proto_random_proto_rawDescGZIP() []byte {
 	return file_proto_random_proto_rawDescData
 }
 
-var file_proto_random_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_proto_random_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_proto_random_proto_goTypes = []any{
-	(*GetRandomRequest)(nil),  // 0: random.GetRandomRequest
-	(*GetRandomResponse)(nil), // 1: random.GetRandomResponse
+	(*GetRandomRequest)(nil),       // 0: random.GetRandomRequest
+	(*GetRandomResponse)(nil),      // 1: random.GetRandomResponse
+	(*StreamRandomRequest)(nil),    // 2: random.StreamRandomRequest
+	(*StreamRandomResponse)(nil),   // 3: random.StreamRandomResponse
+	(*UploadNumbersRequest)(nil),   // 4: random.UploadNumbersRequest
+	(*UploadNumbersResponse)(nil),  // 5: random.UploadNumbersResponse
+	(*CompareNumbersRequest)(nil),  // 6: random.CompareNumbersRequest
+	(*CompareNumbersResponse)(nil), // 7: random.CompareNumbersResponse
 }
 var file_proto_random_proto_depIdxs = []int32{
 	0, // 0: random.Random.GetRandom:input_type -> random.GetRandomRequest
-	1, // 1: random.Random.GetRandom:output_type -> random.GetRandomResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: random.Random.StreamRandom:input_type -> random.StreamRandomRequest
+	4, // 2: random.Random.UploadNumbers:input_type -> random.UploadNumbersRequest
+	6, // 3: random.Random.CompareNumbers:input_type -> random.CompareNumbersRequest
+	1, // 4: random.Random.GetRandom:output_type -> random.GetRandomResponse
+	3, // 5: random.Random.StreamRandom:output_type -> random.StreamRandomResponse
+	5, // 6: random.Random.UploadNumbers:output_type -> random.UploadNumbersResponse
+	7, // 7: random.Random.CompareNumbers:output_type -> random.CompareNumbersResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -152,7 +516,7 @@ func file_proto_random_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_random_proto_rawDesc), len(file_proto_random_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
