@@ -27,16 +27,14 @@ func main() {
 	// 2. Создаём клиент — обёртку над соединением.
 	client := pb.NewRandomClient(conn)
 
-	// 3. Раз в 30 секунд дёргаем GetRandom и печатаем ответ.
-	ticker := time.NewTicker(30 * time.Second)
-	defer ticker.Stop()
-
-	// Сразу дёрнем один раз, не дожидаясь первых 30 секунд.
+	// Первый вызов
 	callGetRandom(client)
 
-	for range ticker.C {
-		callGetRandom(client)
-	}
+	// Второй вызов
+	time.Sleep(10 * time.Second) //через 10 сек
+	callGetRandom(client)
+
+	//По одному вызову по одному ответу
 }
 
 // callGetRandom делает один Unary-вызов и печатает результат.
