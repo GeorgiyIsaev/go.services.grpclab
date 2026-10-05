@@ -1,6 +1,9 @@
 # Установка protobuf
 winget install protobuf
-# перезапустите PowerShell и проверит что все части на месте
+
+# перезапустите PowerShell
+
+# проверит что все части на месте
 protoc --version
 protoc-gen-go --version
 protoc-gen-go-grpc --version
