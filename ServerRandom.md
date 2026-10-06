@@ -6,10 +6,10 @@
 -   **ServerRandom ← вы здесь**
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
-- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
-- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
+- [ClientServerStream](ClientServerStream.md) — один запрос → поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
+- [ClientBidiStream](ClientBidiStream.md) — поток запросов ↔ поток ответов
 
 **Теория и контракт**
 - [random.proto](proto/random.proto) — описание сервиса
@@ -735,10 +735,10 @@ go run ./cmd/ServerRandom | Select-String "\[Bidi\]"
 -   **ServerRandom ← вы здесь**
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
-- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
-- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
+- [ClientServerStream](ClientServerStream.md) — один запрос → поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
+- [ClientBidiStream](ClientBidiStream.md) — поток запросов ↔ поток ответов
 
 **Теория и контракт**
 - [random.proto](proto/random.proto) — описание сервиса

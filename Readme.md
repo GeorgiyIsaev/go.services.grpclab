@@ -19,13 +19,13 @@
 - **Главная ← вы здесь**
 
 **Серверная часть**
-- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+- [ServerRandom](ServerRandom.md) — сервер, реализующий все четыре паттерна
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
-- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
-- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
+- [ClientServerStream](ClientServerStream.md) — один запрос → поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
+- [ClientBidiStream](ClientBidiStream.md) — поток запросов ↔ поток ответов
 
 **Теория и контракт**
 - [random.proto](proto/random.proto) — описание сервиса
@@ -280,13 +280,13 @@ protoc `
 - **Главная ← вы здесь**
 
 **Серверная часть**
-- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+- [ServerRandom](ServerRandom.md) — сервер, реализующий все четыре паттерна
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
-- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
-- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
+- [ClientServerStream](ClientServerStream.md) — один запрос → поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
+- [ClientBidiStream](ClientBidiStream.md) — поток запросов ↔ поток ответов
 
 **Теория и контракт**
 - [random.proto](proto/random.proto) — описание сервиса

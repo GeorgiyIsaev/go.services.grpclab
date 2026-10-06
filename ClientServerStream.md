@@ -3,13 +3,13 @@
 - [Главная](Readme.md)
 
 **Серверная часть**
-- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+- [ServerRandom](ServerRandom.md) — сервер, реализующий все четыре паттерна
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
 - **ClientServerStream ← вы здесь**
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
-- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
+- [ClientBidiStream](ClientBidiStream.md) — поток запросов ↔ поток ответов
 
 **Теория и контракт**
 - [random.proto](proto/random.proto) — описание сервиса

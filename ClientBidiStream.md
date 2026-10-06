@@ -3,12 +3,12 @@
 - [Главная](Readme.md)
 
 **Серверная часть**
-- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+- [ServerRandom](ServerRandom.md) — сервер, реализующий все четыре паттерна
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
-- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
+- [ClientServerStream](ClientServerStream.md) — один запрос → поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
 - **ClientBidiStream ← вы здесь**
 
 **Теория и контракт**
@@ -531,12 +531,12 @@ Bidi — единственный паттерн, где клиенту нужн
 - [Главная](Readme.md)
 
 **Серверная часть**
-- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+- [ServerRandom](ServerRandom.md) — сервер, реализующий все четыре паттерна
 
 **Клиенты**
-- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
-- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
-- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientUnary](ClientUnary.md) — один запрос → один ответ
+- [ClientServerStream](ClientServerStream.md) — один запрос → поток ответов
+- [ClientClientStream](ClientClientStream.md) — поток запросов → один ответ
 - **ClientBidiStream ← вы здесь**
 
 **Теория и контракт**
