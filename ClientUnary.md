@@ -1,3 +1,21 @@
+## 📖 Содержание
+
+- [Главная](Readme.md) 
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+-  **ClientUnary ← вы здесь**
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+
+---
+
 # ClientUnary
 
 Клиент **Unary RPC** — самый простой из четырёх паттернов gRPC.
@@ -270,3 +288,22 @@ grpcurl -plaintext localhost:50051 random.Random/GetRandom
 
 ---
 
+## 📖 Содержание
+
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+-  **ClientUnary ← вы здесь**
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+
+---

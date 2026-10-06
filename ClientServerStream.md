@@ -1,3 +1,20 @@
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- **ClientServerStream ← вы здесь**
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+---
+
 # ClientServerStream
 
 Клиент **Server Streaming RPC** — второй по сложности из четырёх паттернов.
@@ -379,3 +396,20 @@ Server Streaming — первое место, где отмена через к�
 
 ---
 
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- **ClientServerStream ← вы здесь**
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+---

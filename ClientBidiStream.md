@@ -1,3 +1,21 @@
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- **ClientBidiStream ← вы здесь**
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+
+---
+
 # ClientBidiStream
 
 Клиент **Bidirectional Streaming RPC** — четвёртый и последний паттерн.
@@ -508,3 +526,18 @@ Bidi — единственный паттерн, где клиенту нужн
 
 ---
 
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- **ClientBidiStream ← вы здесь**
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса

@@ -1,3 +1,21 @@
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- **ClientClientStream ← вы здесь**
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+
+---
+
 # ClientClientStream
 
 Клиент **Client Streaming RPC** — третий из четырёх паттернов.
@@ -443,5 +461,22 @@ Client Streaming — рабочий инструмент для сценарие
 | Завершение | автомат. | `io.EOF` на `Recv` | **`CloseAndRecv()`** | `CloseSend()` + `io.EOF` |
 | Серверный `io.EOF` | — | — | **сигнал «клиент закончил»** | сигнал «клиент закончил» |
 | Где агрегация | — | клиент | **сервер** | обе стороны |
+
+---
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+- [ServerRandom](cmd/ServerRandom/) — сервер, реализующий все четыре паттерна
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- **ClientClientStream ← вы здесь**
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
 
 ---

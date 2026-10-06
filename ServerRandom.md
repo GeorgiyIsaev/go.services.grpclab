@@ -1,4 +1,20 @@
-[Главный](Readme.md)
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+-   **ServerRandom ← вы здесь**
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+
+---
 
 # ServerRandom
 
@@ -15,6 +31,8 @@
 `main` собирает всё вместе.
 
 ---
+
+
 
 ## 🎯 Что делает сервер
 
@@ -709,4 +727,20 @@ go run ./cmd/ServerRandom | Select-String "\[Bidi\]"
 
 ---
 
-[Главный](Readme.md)
+## 📖 Содержание
+
+- [Главная](Readme.md)
+
+**Серверная часть**
+-   **ServerRandom ← вы здесь**
+
+**Клиенты**
+- [ClientUnary](cmd/ClientUnary/) — один запрос → один ответ
+- [ClientServerStream](cmd/ClientServerStream/) — один запрос → поток ответов
+- [ClientClientStream](cmd/ClientClientStream/) — поток запросов → один ответ
+- [ClientBidiStream](cmd/ClientBidiStream/) — поток запросов ↔ поток ответов
+
+**Теория и контракт**
+- [random.proto](proto/random.proto) — описание сервиса
+
+---
